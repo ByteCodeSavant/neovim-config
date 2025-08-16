@@ -7,15 +7,17 @@ return {
           return LazyVim.pick(cmd, opts)()
         end,
         header = [[
-                                                                     
-      ████ ██████           █████      ██                     
-     ███████████             █████                             
-     █████████ ███████████████████ ███   ███████████   
-    █████████  ███    █████████████ █████ ██████████████   
-   █████████ ██████████ █████████ █████ █████ ████ █████   
- ███████████ ███    ███ █████████ █████ █████ ████ █████  
-██████  █████████████████████ ████ █████ █████ ████ ██████ 
-                                                                     
+  ad888                                                                888ba    
+  88'       a8"            d8  88           88b           d88  "8a       `88    
+  88      a8"            ,8P'  88           888b         d888    "8a      88    
+  88    a8"             d8"    88           88`8b       d8'88      "8a    88    
+ ,8P  a8"             ,8P'     88           88 `8b     d8' 88        "8a  Y8,   
+88(   "8a            d8"       88           88  `8b   d8'  88        a8"   )88  
+ "8b    "8a        ,8P'        88           88   `8b d8'   88      a8"    d8"   
+  88      "8a     d8"          88           88    `888'    88    a8"      88    
+  88        "8a  8P'           88888888888  88     `8'     88  a8"        88    
+  88,                                                                    ,88    
+  "Y888                                                                888P"    
  ]],
         -- stylua: ignore
         ---@type snacks.dashboard.Item[]
@@ -36,7 +38,7 @@ return {
   config = function(_, opts)
     -- Setup dashboard with theme-aware colors
     require("snacks").setup(opts)
-    
+
     -- Set custom highlights for dashboard that match Kanagawa theme
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
@@ -46,23 +48,23 @@ return {
         if vim.g.colors_name == "kanagawa" then
           -- Kanagawa theme colors
           colors = {
-            header = "#7E9CD8",      -- Kanagawa blue
-            icon = "#FF9E3B",        -- Kanagawa orange
-            desc = "#DCD7BA",        -- Kanagawa foreground
-            key = "#E6C384",         -- Kanagawa yellow
-            footer = "#727169",      -- Kanagawa comment
+            header = "#7E9CD8", -- Kanagawa blue
+            icon = "#FF9E3B", -- Kanagawa orange
+            desc = "#DCD7BA", -- Kanagawa foreground
+            key = "#E6C384", -- Kanagawa yellow
+            footer = "#727169", -- Kanagawa comment
           }
         else
           -- Fallback colors
           colors = {
-            header = "#7aa2f7",      -- Tokyo Night blue
-            icon = "#ff9e64",        -- Tokyo Night orange
-            desc = "#c0caf5",        -- Tokyo Night foreground
-            key = "#e0af68",         -- Tokyo Night yellow
-            footer = "#565f89",      -- Tokyo Night comment
+            header = "#7aa2f7", -- Tokyo Night blue
+            icon = "#ff9e64", -- Tokyo Night orange
+            desc = "#c0caf5", -- Tokyo Night foreground
+            key = "#e0af68", -- Tokyo Night yellow
+            footer = "#565f89", -- Tokyo Night comment
           }
         end
-        
+
         -- Apply custom highlights
         vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = colors.header, bold = true })
         vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.icon })
