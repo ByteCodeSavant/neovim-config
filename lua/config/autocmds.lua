@@ -14,3 +14,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
   end,
 })
+
+-- Format Dart/Flutter files with dart format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.dart",
+  callback = function()
+    require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
+  end,
+})
+
+-- Create a command for manual formatting
+vim.api.nvim_create_user_command("Format", function()
+  require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
+end, {})

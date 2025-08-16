@@ -68,6 +68,11 @@ return {
             vim.keymap.set("n", "<leader>fo", "<cmd>FlutterOutlineToggle<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Outline" }))
             vim.keymap.set("n", "<leader>ft", "<cmd>FlutterDevTools<cr>", vim.tbl_extend("force", opts, { desc = "Flutter DevTools" }))
             vim.keymap.set("n", "<leader>fc", "<cmd>FlutterLogClear<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Clear Logs" }))
+            
+            -- Add formatting keymap
+            vim.keymap.set("n", "<leader>fm", function()
+              require("conform").format({ bufnr = bufnr })
+            end, vim.tbl_extend("force", opts, { desc = "Format Buffer" }))
           end,
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
           settings = {
