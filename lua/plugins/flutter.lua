@@ -130,7 +130,8 @@ return {
       formatters = {
         dart_format = {
           command = "dart",
-          args = { "format" },
+          args = { "format", "$FILENAME" },
+          stdin = false,
         },
       },
     },

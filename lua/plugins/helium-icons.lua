@@ -34,7 +34,7 @@ return {
   },
   -- Override mini.icons with Helium-style icons
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     opts = {
       -- File type icons with modern look
       file = {
