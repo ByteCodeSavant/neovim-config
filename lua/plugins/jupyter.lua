@@ -31,6 +31,17 @@ return {
   {
     "GCBallesteros/jupytext.nvim",
     config = true,
-    lazy = false,
+    lazy = true,
+    ft = { "ipynb", "jupyter" }, -- Load only for notebook files
+  },
+
+  -- Which-key group for Molten/Jupyter commands
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>m", group = "molten/jupyter", mode = { "n", "v" } },
+      },
+    },
   },
 }

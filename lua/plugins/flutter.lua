@@ -2,7 +2,8 @@ return {
   -- Flutter Tools - Main Flutter development plugin
   {
     "akinsho/flutter-tools.nvim",
-    lazy = false,
+    lazy = true,
+    ft = "dart", -- Load only for Dart files
     dependencies = {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim", -- optional for vim.ui.select
@@ -69,9 +70,14 @@ return {
             vim.keymap.set("n", "<leader>ft", "<cmd>FlutterDevTools<cr>", vim.tbl_extend("force", opts, { desc = "Flutter DevTools" }))
             vim.keymap.set("n", "<leader>fc", "<cmd>FlutterLogClear<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Clear Logs" }))
             
-            -- Add formatting keymap
+            -- Add formatting keymap with error handling
             vim.keymap.set("n", "<leader>fm", function()
-              require("conform").format({ bufnr = bufnr })
+              local ok, conform = pcall(require, "conform")
+              if ok then
+                conform.format({ bufnr = bufnr })
+              else
+                vim.notify("conform.nvim not available", vim.log.levels.WARN)
+              end
             end, vim.tbl_extend("force", opts, { desc = "Format Buffer" }))
           end,
           capabilities = require("cmp_nvim_lsp").default_capabilities(),

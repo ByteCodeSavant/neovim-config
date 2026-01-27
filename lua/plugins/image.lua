@@ -71,4 +71,14 @@ return {
       },
     },
   },
+
+  -- Which-key group for image commands
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>i", group = "image" },
+      },
+    },
+  },
 }

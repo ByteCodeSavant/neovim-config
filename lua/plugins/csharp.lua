@@ -31,6 +31,16 @@ return {
     end,
   },
 
+  -- Which-key group for .NET commands
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>d", group = "dotnet" },
+      },
+    },
+  },
+
   -- Ensure nvim-dap is loaded for debugging support
   {
     "mfussenegger/nvim-dap",
