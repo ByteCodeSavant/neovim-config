@@ -60,16 +60,61 @@ return {
           on_attach = function(client, bufnr)
             -- Custom keymaps for Flutter
             local opts = { buffer = bufnr, silent = true }
-            vim.keymap.set("n", "<leader>fr", "<cmd>FlutterRun<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Run" }))
-            vim.keymap.set("n", "<leader>fR", "<cmd>FlutterRestart<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Restart" }))
-            vim.keymap.set("n", "<leader>fq", "<cmd>FlutterQuit<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Quit" }))
-            vim.keymap.set("n", "<leader>fd", "<cmd>FlutterDevices<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Devices" }))
-            vim.keymap.set("n", "<leader>fe", "<cmd>FlutterEmulators<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Emulators" }))
-            vim.keymap.set("n", "<leader>fl", "<cmd>FlutterReload<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Reload" }))
-            vim.keymap.set("n", "<leader>fo", "<cmd>FlutterOutlineToggle<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Outline" }))
-            vim.keymap.set("n", "<leader>ft", "<cmd>FlutterDevTools<cr>", vim.tbl_extend("force", opts, { desc = "Flutter DevTools" }))
-            vim.keymap.set("n", "<leader>fc", "<cmd>FlutterLogClear<cr>", vim.tbl_extend("force", opts, { desc = "Flutter Clear Logs" }))
-            
+            vim.keymap.set(
+              "n",
+              "<leader>fr",
+              "<cmd>FlutterRun<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Run" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fR",
+              "<cmd>FlutterRestart<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Restart" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fq",
+              "<cmd>FlutterQuit<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Quit" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fd",
+              "<cmd>FlutterDevices<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Devices" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fe",
+              "<cmd>FlutterEmulators<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Emulators" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fl",
+              "<cmd>FlutterReload<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Reload" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fo",
+              "<cmd>FlutterOutlineToggle<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Outline" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>ft",
+              "<cmd>FlutterDevTools<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter DevTools" })
+            )
+            vim.keymap.set(
+              "n",
+              "<leader>fc",
+              "<cmd>FlutterLogClear<cr>",
+              vim.tbl_extend("force", opts, { desc = "Flutter Clear Logs" })
+            )
+
             -- Add formatting keymap with error handling
             vim.keymap.set("n", "<leader>fm", function()
               local ok, conform = pcall(require, "conform")
@@ -153,3 +198,4 @@ return {
     },
   },
 }
+

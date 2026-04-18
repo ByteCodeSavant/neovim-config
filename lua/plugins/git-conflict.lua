@@ -12,6 +12,7 @@ return {
         incoming = "DiffAdd",
         current = "DiffText",
       },
+      debug = false, -- set to true to enable debug logging
     })
   end,
   keys = {

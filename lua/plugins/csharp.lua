@@ -1,62 +1,57 @@
 return {
-  -- Easy .NET development with Roslyn LSP and netcoredbg debugging
+  -- Easy .NET: bundled Roslyn LSP, solution/project pickers, test runner, and DAP integration
   {
     "GustavEikaas/easy-dotnet.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    config = function()
-      local dotnet = require("easy-dotnet")
-      dotnet.setup({
-        -- Use Roslyn LSP (modern, official Microsoft language server)
-        roslyn = true,
-        -- Auto-bootstrap Roslyn LSP
-        auto_bootstrap_namespace = true,
-      })
-
-      -- Keymaps for common .NET operations
-      vim.keymap.set("n", "<leader>dr", function()
-        dotnet.run_default()
-      end, { desc = "Run .NET project" })
-
-      vim.keymap.set("n", "<leader>db", function()
-        dotnet.build_default()
-      end, { desc = "Build .NET project" })
-
-      vim.keymap.set("n", "<leader>dt", function()
-        dotnet.test_default()
-      end, { desc = "Test .NET project" })
-
-      vim.keymap.set("n", "<leader>dp", function()
-        dotnet.restore()
-      end, { desc = "Restore .NET packages" })
-    end,
+    ft = { "cs", "vb", "fsharp" },
+    cmd = { "Dotnet", "EasyDotnet" },
+    opts = {
+      lsp = {
+        enabled = true,
+        preload_roslyn = true,
+      },
+      debugger = {
+        auto_register_dap = true,
+      },
+      auto_bootstrap_namespace = true,
+    },
+    keys = {
+      { "<leader>cnr", function() require("easy-dotnet").run_default() end,   desc = "Run .NET project" },
+      { "<leader>cnb", function() require("easy-dotnet").build_default() end, desc = "Build .NET project" },
+      { "<leader>cnt", function() require("easy-dotnet").test_default() end,  desc = "Test .NET project" },
+      { "<leader>cnp", function() require("easy-dotnet").restore() end,       desc = "Restore .NET packages" },
+    },
   },
 
-  -- Which-key group for .NET commands
+  -- which-key: register .NET subgroup under "code"
   {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>d", group = "dotnet" },
+        { "<leader>cn", group = ".net" },
       },
     },
   },
 
-  -- Ensure nvim-dap is loaded for debugging support
+  -- Treesitter parser for C#
   {
-    "mfussenegger/nvim-dap",
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "c_sharp" } },
+  },
+
+  -- Mason: install csharpier formatter and netcoredbg debugger
+  {
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "csharpier", "netcoredbg" } },
+  },
+
+  -- conform.nvim: format .cs files with csharpier
+  {
+    "stevearc/conform.nvim",
     optional = true,
-    dependencies = {
-      {
-        "jay-babu/mason-nvim-dap.nvim",
-        dependencies = "mason.nvim",
-        cmd = { "DapInstall", "DapUninstall" },
-        opts = {
-          automatic_installation = true,
-          handlers = {},
-          ensure_installed = {
-            "netcoredbg", -- .NET Core debugger
-          },
-        },
+    opts = {
+      formatters_by_ft = {
+        cs = { "csharpier" },
       },
     },
   },
