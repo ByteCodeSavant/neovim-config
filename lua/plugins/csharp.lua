@@ -16,10 +16,37 @@ return {
       auto_bootstrap_namespace = true,
     },
     keys = {
-      { "<leader>cnr", function() require("easy-dotnet").run_default() end,   desc = "Run .NET project" },
+      {
+        "<leader>cnr",
+        function()
+          local client = require("easy-dotnet.rpc.rpc").global_rpc_client
+          client:initialize(function()
+            client.workspace:run({
+              use_default = true,
+              use_launch_profile = true,
+              file_path = vim.api.nvim_buf_get_name(0),
+            })
+          end)
+        end,
+        desc = "Run .NET project",
+      },
       { "<leader>cnb", function() require("easy-dotnet").build_default() end, desc = "Build .NET project" },
       { "<leader>cnt", function() require("easy-dotnet").test_default() end,  desc = "Test .NET project" },
       { "<leader>cnp", function() require("easy-dotnet").restore() end,       desc = "Restore .NET packages" },
+      {
+        "<leader>cnx",
+        function()
+          local terminal = require("easy-dotnet.terminal")
+          local job_id = terminal.state.job_id
+          if job_id then
+            vim.fn.jobstop(job_id)
+            vim.defer_fn(function() terminal.hide() end, 200)
+          else
+            vim.notify("No running .NET process", vim.log.levels.WARN)
+          end
+        end,
+        desc = "Stop .NET project",
+      },
     },
   },
 
