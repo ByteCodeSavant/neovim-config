@@ -4,6 +4,8 @@
 
 local opt = vim.opt
 
+opt.winbar = "%=%m %f" -- Show modified flag and file path in window bar (LazyVim default)
+
 -- Scrolling behavior - keep more context around cursor
 opt.scrolloff = 8 -- Lines of context above/below cursor
 opt.sidescrolloff = 8 -- Columns of context to left/right of cursor
