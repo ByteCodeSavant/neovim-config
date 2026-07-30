@@ -4,6 +4,8 @@
 
 local opt = vim.opt
 
+vim.g.lazyvim_php_lsp = "intelephense" -- WordPress stubs support (default: phpactor)
+
 opt.winbar = "%=%m %f" -- Show modified flag and file path in window bar (LazyVim default)
 
 -- Scrolling behavior - keep more context around cursor
