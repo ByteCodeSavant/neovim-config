@@ -1,37 +1,6 @@
+-- snacks' `opts.explorer` only accepts `replace_netrw` and `trash`; explorer
+-- icons come from mini.icons below, so there is nothing to configure there.
 return {
-  -- Enhanced file explorer with modern icons
-  {
-    "snacks.nvim",
-    opts = {
-      explorer = {
-        -- Use modern rounded icons
-        icons = {
-          folder = {
-            closed = "󰉋",
-            open = "󰝰",
-            empty = "󰉖",
-            empty_open = "󰷏",
-            symlink = "󰉒",
-            symlink_open = "󰉒",
-          },
-          file = {
-            default = "󰈙",
-            symlink = "󰌹",
-            executable = "󰈸",
-          },
-          git = {
-            unstaged = "󰄱",
-            staged = "󰱒",
-            unmerged = "󰘭",
-            renamed = "󰑕",
-            untracked = "󰈤",
-            deleted = "󰍵",
-            ignored = "󰘓",
-          },
-        },
-      },
-    },
-  },
   -- Override mini.icons with Helium-style icons
   {
     "nvim-mini/mini.icons",
@@ -42,7 +11,6 @@ return {
         [".gitattributes"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
         [".env"] = { glyph = "󰙄", hl = "MiniIconsYellow" },
         [".dockerignore"] = { glyph = "󰡨", hl = "MiniIconsBlue" },
-        ["dockerfile"] = { glyph = "󰡨", hl = "MiniIconsBlue" },
         ["docker-compose.yml"] = { glyph = "󰡨", hl = "MiniIconsBlue" },
         ["package.json"] = { glyph = "󰎙", hl = "MiniIconsGreen" },
         ["package-lock.json"] = { glyph = "󰎙", hl = "MiniIconsGreen" },
@@ -85,7 +53,6 @@ return {
         ["pyproject.toml"] = { glyph = "󰌠", hl = "MiniIconsBlue" },
         ["Pipfile"] = { glyph = "󰌠", hl = "MiniIconsBlue" },
         ["poetry.lock"] = { glyph = "󰌠", hl = "MiniIconsBlue" },
-        ["Gemfile"] = { glyph = "󰴭", hl = "MiniIconsRed" },
         ["Gemfile.lock"] = { glyph = "󰴭", hl = "MiniIconsRed" },
         ["composer.json"] = { glyph = "󰈗", hl = "MiniIconsPurple" },
         ["composer.lock"] = { glyph = "󰈗", hl = "MiniIconsPurple" },
@@ -96,37 +63,25 @@ return {
         ["CMakeLists.txt"] = { glyph = "󰰒", hl = "MiniIconsBlue" },
         ["Makefile"] = { glyph = "󰰒", hl = "MiniIconsGreen" },
         ["makefile"] = { glyph = "󰰒", hl = "MiniIconsGreen" },
-        ["*.mk"] = { glyph = "󰰒", hl = "MiniIconsGreen" },
       },
       -- Extension icons with modern look
       extension = {
-        js = { glyph = "󰌞", hl = "MiniIconsYellow" },
         jsx = { glyph = "", hl = "MiniIconsBlue" },
         ts = { glyph = "󰛦", hl = "MiniIconsBlue" },
-        tsx = { glyph = "", hl = "MiniIconsBlue" },
-        vue = { glyph = "󰡄", hl = "MiniIconsGreen" },
         svelte = { glyph = "󰰓", hl = "MiniIconsOrange" },
         astro = { glyph = "󰰓", hl = "MiniIconsOrange" },
-        html = { glyph = "󰌝", hl = "MiniIconsOrange" },
         css = { glyph = "󰌜", hl = "MiniIconsBlue" },
         scss = { glyph = "󰟦", hl = "MiniIconsPurple" },
         sass = { glyph = "󰟦", hl = "MiniIconsPurple" },
         less = { glyph = "󰰒", hl = "MiniIconsBlue" },
         stylus = { glyph = "󰰒", hl = "MiniIconsGreen" },
-        json = { glyph = "󰘦", hl = "MiniIconsYellow" },
         yaml = { glyph = "", hl = "MiniIconsOrange" },
         yml = { glyph = "", hl = "MiniIconsOrange" },
         toml = { glyph = "󰘦", hl = "MiniIconsOrange" },
         xml = { glyph = "󰘦", hl = "MiniIconsOrange" },
         py = { glyph = "󰌠", hl = "MiniIconsBlue" },
-        rb = { glyph = "󰴭", hl = "MiniIconsRed" },
-        php = { glyph = "󰌟", hl = "MiniIconsPurple" },
         go = { glyph = "", hl = "MiniIconsBlue" },
-        rs = { glyph = "󱘗", hl = "MiniIconsOrange" },
-        java = { glyph = "󰬷", hl = "MiniIconsOrange" },
         kt = { glyph = "󱈙", hl = "MiniIconsPurple" },
-        swift = { glyph = "󰛥", hl = "MiniIconsOrange" },
-        c = { glyph = "󰙱", hl = "MiniIconsBlue" },
         cpp = { glyph = "󰙲", hl = "MiniIconsBlue" },
         h = { glyph = "󰙱", hl = "MiniIconsBlue" },
         hpp = { glyph = "󰙲", hl = "MiniIconsBlue" },
@@ -150,7 +105,6 @@ return {
         md = { glyph = "󰍔", hl = "MiniIconsBlue" },
         mdx = { glyph = "󰍔", hl = "MiniIconsBlue" },
         txt = { glyph = "󰈙", hl = "MiniIconsGrey" },
-        pdf = { glyph = "󰈦", hl = "MiniIconsRed" },
         doc = { glyph = "󰈙", hl = "MiniIconsBlue" },
         docx = { glyph = "󰈙", hl = "MiniIconsBlue" },
         xls = { glyph = "󰈙", hl = "MiniIconsGreen" },

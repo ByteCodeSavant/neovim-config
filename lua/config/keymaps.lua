@@ -2,46 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Formatting keymaps with error handling
-vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-  local ok, conform = pcall(require, "conform")
-  if ok then
-    conform.format({ bufnr = vim.api.nvim_get_current_buf() })
-  else
-    vim.notify("conform.nvim not available", vim.log.levels.WARN)
-  end
-end, { desc = "Format Buffer" })
+-- Formatting: LazyVim already maps <leader>cf / <leader>cF via LazyVim.format.
 
-vim.keymap.set({ "n", "v" }, "<leader>cF", function()
-  local ok, conform = pcall(require, "conform")
-  if ok then
-    conform.format({ bufnr = vim.api.nvim_get_current_buf(), formatters = { "injected" } })
-  else
-    vim.notify("conform.nvim not available", vim.log.levels.WARN)
-  end
-end, { desc = "Format Injected Langs" })
-
--- Alternative formatting keybinds
-vim.keymap.set({ "n", "v" }, "gq", function()
-  local ok, conform = pcall(require, "conform")
-  if ok then
-    conform.format({ bufnr = vim.api.nvim_get_current_buf() })
-  else
-    vim.notify("conform.nvim not available", vim.log.levels.WARN)
-  end
-end, { desc = "Format Buffer" })
-
-vim.keymap.set("n", "<leader>fm", function()
-  local ok, conform = pcall(require, "conform")
-  if ok then
-    conform.format({ bufnr = vim.api.nvim_get_current_buf() })
-  else
-    vim.notify("conform.nvim not available", vim.log.levels.WARN)
-  end
-end, { desc = "Format Buffer" })
-
--- Git Telescope keymaps
-vim.keymap.set("n", "<leader>gC", "<cmd>Telescope git_commits<cr>", { desc = "Git Commits" })
-vim.keymap.set("n", "<leader>gB", "<cmd>Telescope git_branches<cr>", { desc = "Git Branches" })
-vim.keymap.set("n", "<leader>gst", "<cmd>Telescope git_status<cr>", { desc = "Git Status" })
-vim.keymap.set("n", "<leader>gS", "<cmd>Telescope git_stash<cr>", { desc = "Git Stash" })
+-- Git pickers LazyVim doesn't map (it has gb/gB/gf/gg/gl already).
+-- Letters picked to avoid gitsigns' buffer-local maps in gitsigns-config.lua:
+-- gS = Stage Buffer, gd = Diff This, gB = Blame File.
+vim.keymap.set("n", "<leader>gC", function() Snacks.picker.git_log() end, { desc = "Git Commits" })
+vim.keymap.set("n", "<leader>gN", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
+vim.keymap.set("n", "<leader>gv", function() Snacks.picker.git_status() end, { desc = "Git Status" })
+vim.keymap.set("n", "<leader>gz", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })

@@ -115,17 +115,10 @@ return {
               vim.tbl_extend("force", opts, { desc = "Flutter Clear Logs" })
             )
 
-            -- Add formatting keymap with error handling
-            vim.keymap.set("n", "<leader>fm", function()
-              local ok, conform = pcall(require, "conform")
-              if ok then
-                conform.format({ bufnr = bufnr })
-              else
-                vim.notify("conform.nvim not available", vim.log.levels.WARN)
-              end
-            end, vim.tbl_extend("force", opts, { desc = "Format Buffer" }))
+            -- Label <leader>f as "flutter" only in Dart buffers; elsewhere it
+            -- stays LazyVim's file/find group.
+            require("which-key").add({ "<leader>f", group = "flutter", buffer = bufnr })
           end,
-          capabilities = require("cmp_nvim_lsp").default_capabilities(),
           settings = {
             dart = {
               completeFunctionCalls = true,
@@ -184,16 +177,6 @@ return {
           args = { "format", "$FILENAME" },
           stdin = false,
         },
-      },
-    },
-  },
-
-  -- Which-key mappings for Flutter commands
-  {
-    "folke/which-key.nvim",
-    opts = {
-      spec = {
-        { "<leader>f", group = "flutter", mode = { "n", "v" } },
       },
     },
   },
