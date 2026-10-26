@@ -138,32 +138,6 @@ return {
     end,
   },
 
-  -- LSP configuration for Dart
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        dartls = {
-          cmd = { "dart", "language-server", "--protocol=lsp" },
-          filetypes = { "dart" },
-          init_options = {
-            onlyAnalyzeProjectsWithOpenFiles = true,
-            suggestFromUnimportedLibraries = true,
-            closingLabels = true,
-            outline = true,
-            flutterOutline = true,
-          },
-          settings = {
-            dart = {
-              completeFunctionCalls = true,
-              showTodos = true,
-            },
-          },
-        },
-      },
-    },
-  },
-
   -- Formatting
   {
     "stevearc/conform.nvim",

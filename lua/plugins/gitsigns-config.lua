@@ -47,8 +47,12 @@ return {
           end
 
           -- Navigation
-          map("n", "]h", gs.next_hunk, "Next Hunk")
-          map("n", "[h", gs.prev_hunk, "Prev Hunk")
+          map("n", "]h", function()
+            gs.nav_hunk("next")
+          end, "Next Hunk")
+          map("n", "[h", function()
+            gs.nav_hunk("prev")
+          end, "Prev Hunk")
 
           -- Actions
           map("n", "<leader>gs", gs.stage_hunk, "Stage Hunk")
@@ -60,7 +64,6 @@ return {
             gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
           end, "Reset Hunk")
           map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
-          map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
           map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
           map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
           map("n", "<leader>gb", function()
@@ -76,7 +79,7 @@ return {
 
           -- Toggle
           map("n", "<leader>gtb", gs.toggle_current_line_blame, "Toggle Blame")
-          map("n", "<leader>gtd", gs.toggle_deleted, "Toggle Deleted")
+          map("n", "<leader>gtd", gs.preview_hunk_inline, "Preview Hunk Inline")
           map("n", "<leader>gth", gs.toggle_linehl, "Toggle Line Highlights")
 
           -- Text object

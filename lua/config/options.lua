@@ -5,6 +5,7 @@
 local opt = vim.opt
 
 vim.g.lazyvim_php_lsp = "intelephense" -- WordPress stubs support (default: phpactor)
+vim.g.lazyvim_python_lsp = "basedpyright"
 
 opt.winbar = "%=%m %f" -- modified flag + file path in the window bar
 opt.scrolloff = 8 -- lines of context above/below cursor (LazyVim: 4)
