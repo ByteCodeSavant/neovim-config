@@ -3,7 +3,6 @@ return {
     "3rd/image.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
     },
     opts = {
       backend = "kitty",
@@ -53,20 +52,18 @@ return {
     },
   },
   {
-    "ekickx/clipboard-image.nvim",
+    "HakonHarnes/img-clip.nvim",
     opts = {
       default = {
-        img_dir = "images",
-        img_name = function()
-          return os.date("%Y-%m-%d-%H-%M-%S")
-        end,
-        affix = "![](images/%s)",
+        dir_path = "images",
+        file_name = "%Y-%m-%d-%H-%M-%S",
+        prompt_for_file_name = false,
       },
     },
     keys = {
       {
         "<leader>ip",
-        "<CMD>PasteIMG<CR>",
+        "<cmd>PasteImage<cr>",
         desc = "Paste clipboard image",
       },
     },

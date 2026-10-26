@@ -7,6 +7,10 @@ local opt = vim.opt
 vim.g.lazyvim_php_lsp = "intelephense" -- WordPress stubs support (default: phpactor)
 vim.g.lazyvim_python_lsp = "basedpyright"
 
-opt.winbar = "%=%m %f" -- modified flag + file path in the window bar
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+opt.winborder = "rounded"
 opt.scrolloff = 8 -- lines of context above/below cursor (LazyVim: 4)
 opt.updatetime = 250 -- CursorHold delay (LazyVim: 200)

@@ -6,13 +6,11 @@ return {
     ft = "dart", -- Load only for Dart files
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
     config = function()
       require("flutter-tools").setup({
         ui = {
           border = "rounded",
-          notification_style = "nvim-notify",
         },
         decorations = {
           statusline = {
@@ -57,67 +55,27 @@ return {
             virtual_text = true, -- show the highlight using virtual text
             virtual_text_str = "■", -- the virtual text character to use
           },
-          on_attach = function(client, bufnr)
-            -- Custom keymaps for Flutter
-            local opts = { buffer = bufnr, silent = true }
-            vim.keymap.set(
-              "n",
-              "<leader>fr",
-              "<cmd>FlutterRun<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Run" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fR",
-              "<cmd>FlutterRestart<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Restart" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fq",
-              "<cmd>FlutterQuit<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Quit" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fd",
-              "<cmd>FlutterDevices<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Devices" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fe",
-              "<cmd>FlutterEmulators<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Emulators" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fl",
-              "<cmd>FlutterReload<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Reload" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fo",
-              "<cmd>FlutterOutlineToggle<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Outline" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>ft",
-              "<cmd>FlutterDevTools<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter DevTools" })
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>fc",
-              "<cmd>FlutterLogClear<cr>",
-              vim.tbl_extend("force", opts, { desc = "Flutter Clear Logs" })
-            )
-
-            -- Label <leader>f as "flutter" only in Dart buffers; elsewhere it
-            -- stays LazyVim's file/find group.
-            require("which-key").add({ "<leader>f", group = "flutter", buffer = bufnr })
+          on_attach = function(_, bufnr)
+            local maps = {
+              r = { "FlutterRun", "Flutter Run" },
+              R = { "FlutterRestart", "Flutter Restart" },
+              q = { "FlutterQuit", "Flutter Quit" },
+              d = { "FlutterDevices", "Flutter Devices" },
+              e = { "FlutterEmulators", "Flutter Emulators" },
+              l = { "FlutterReload", "Flutter Reload" },
+              o = { "FlutterOutlineToggle", "Flutter Outline" },
+              t = { "FlutterDevTools", "Flutter DevTools" },
+              c = { "FlutterLogClear", "Flutter Clear Logs" },
+            }
+            for key, m in pairs(maps) do
+              vim.keymap.set(
+                "n",
+                "<leader>F" .. key,
+                "<cmd>" .. m[1] .. "<cr>",
+                { buffer = bufnr, silent = true, desc = m[2] }
+              )
+            end
+            require("which-key").add({ "<leader>F", group = "flutter", buffer = bufnr })
           end,
           settings = {
             dart = {
@@ -155,4 +113,3 @@ return {
     },
   },
 }
-

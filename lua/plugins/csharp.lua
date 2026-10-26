@@ -2,7 +2,7 @@ return {
   -- Easy .NET: bundled Roslyn LSP, solution/project pickers, test runner, and DAP integration
   {
     "GustavEikaas/easy-dotnet.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     ft = { "cs", "vb", "fsharp" },
     cmd = { "Dotnet", "EasyDotnet" },
     opts = {
@@ -30,9 +30,27 @@ return {
         end,
         desc = "Run .NET project",
       },
-      { "<leader>cnb", function() require("easy-dotnet").build_default() end, desc = "Build .NET project" },
-      { "<leader>cnt", function() require("easy-dotnet").test_default() end,  desc = "Test .NET project" },
-      { "<leader>cnp", function() require("easy-dotnet").restore() end,       desc = "Restore .NET packages" },
+      {
+        "<leader>cnb",
+        function()
+          require("easy-dotnet").build_default()
+        end,
+        desc = "Build .NET project",
+      },
+      {
+        "<leader>cnt",
+        function()
+          require("easy-dotnet").test_default()
+        end,
+        desc = "Test .NET project",
+      },
+      {
+        "<leader>cnp",
+        function()
+          require("easy-dotnet").restore()
+        end,
+        desc = "Restore .NET packages",
+      },
       {
         "<leader>cnx",
         function()
@@ -40,7 +58,9 @@ return {
           local job_id = terminal.state.job_id
           if job_id then
             vim.fn.jobstop(job_id)
-            vim.defer_fn(function() terminal.hide() end, 200)
+            vim.defer_fn(function()
+              terminal.hide()
+            end, 200)
           else
             vim.notify("No running .NET process", vim.log.levels.WARN)
           end

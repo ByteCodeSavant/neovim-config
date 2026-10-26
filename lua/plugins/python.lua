@@ -9,14 +9,6 @@ return {
     end,
   },
 
-  -- Python treesitter support
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "python" })
-    end,
-  },
-
   -- LSP configuration for Python
   {
     "neovim/nvim-lspconfig",
@@ -37,4 +29,3 @@ return {
     },
   },
 }
-
