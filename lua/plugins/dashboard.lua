@@ -2,21 +2,22 @@ return {
   "snacks.nvim",
   opts = {
     dashboard = {
-      width = 65,
       preset = {
         pick = function(cmd, opts)
           return LazyVim.pick(cmd, opts)()
         end,
         header = [[
-  ad8                                                       8ba
-  88'      a8"         d8  88       88b       d88  "8a      `88
-  88     a8"         ,8P'  88       888b     d888    "8a     88
- ,8P   a8"          d8"    88       88`8b   d8'88      "8a   Y8,
-88(    "8a        ,8P'     88       88 `8b d8' 88      a8"    )88
- "8b     "8a     d8"       88       88  `888'  88    a8"     d8"
-  88       "8a  8P'        8888888  88   `8'   88  a8"       88
-  88,                                                       ,88
-  "Y8                                                       8P"
+  ad888                                                                888ba    
+  88'       a8"            d8  88           88b           d88  "8a       `88    
+  88      a8"            ,8P'  88           888b         d888    "8a      88    
+  88    a8"             d8"    88           88`8b       d8'88      "8a    88    
+ ,8P  a8"             ,8P'     88           88 `8b     d8' 88        "8a  Y8,   
+88(   "8a            d8"       88           88  `8b   d8'  88        a8"   )88  
+ "8b    "8a        ,8P'        88           88   `8b d8'   88      a8"    d8"   
+  88      "8a     d8"          88           88    `888'    88    a8"      88    
+  88        "8a  8P'           88888888888  88     `8'     88  a8"        88    
+  88,                                                                    ,88    
+  "Y888                                                                888P"    
  ]],
         -- stylua: ignore
         ---@type snacks.dashboard.Item[]
@@ -30,27 +31,6 @@ return {
           { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-        },
-      },
-      sections = {
-        { section = "header" },
-        { section = "keys", gap = 1, padding = 1 },
-        { section = "startup" },
-        { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-        {
-          pane = 2,
-          icon = " ",
-          title = "Git Status",
-          section = "terminal",
-          enabled = function()
-            return Snacks.git.get_root() ~= nil
-          end,
-          cmd = "git status --short --branch --renames",
-          height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
         },
       },
     },
